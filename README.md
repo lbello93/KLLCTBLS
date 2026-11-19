@@ -27,7 +27,7 @@ Settings at the top of `build.mjs`:
 
 ## Deploy
 
-Upload `public/` to any static host: Netlify, Cloudflare Pages, Vercel, GitHub Pages or S3. Static hosts serve `404.html` automatically. `_headers` sets long cache lifetimes on `/assets/*` (Netlify and Cloudflare Pages).
+**Vercel:** import the GitHub repo; `vercel.json` sets the build (`node build.mjs`), output folder (`public`), trailing-slash URLs, security/cache headers and `/exhibits/` → `/portfolio/` redirects, so no settings need changing. Other static hosts (Netlify, Cloudflare Pages) can serve `public/` as is; `_headers` covers those.
 
 After launch, submit `https://<domain>/sitemap.xml` in Google Search Console.
 
