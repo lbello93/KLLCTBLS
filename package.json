@@ -1,0 +1,12 @@
+{
+  "name": "kllctbls-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "kllctbls marketing website — static, SEO-ready, mobile-optimised.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "dev": "node build.mjs && node serve.mjs"
+  }
+}

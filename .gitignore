@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+Thumbs.db
+# source / reference media (optimised copies live in public/assets)
+/*.mp4
+/Dallas card show images/
