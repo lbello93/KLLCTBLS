@@ -170,8 +170,10 @@ p { margin: 0; }
 /* Home hero: looping video, light purple tint, title on the right */
 .hero-video { position: relative; height: calc(100svh - var(--nav-h)); min-height: 520px; overflow: hidden; background: #2A1150; isolation: isolate; display: flex; align-items: center; }
 .hero-video__poster, .hero-video__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: -3; }
-.hero-video__media { opacity: 0; transition: opacity .6s ease; }
-.hero-video.is-playing .hero-video__media { opacity: 1; }
+/* the video stays fully visible underneath (Safari won't autoplay a hidden video); the poster fades off it */
+.hero-video__media { z-index: -4; }
+.hero-video__poster { transition: opacity .6s ease; }
+.hero-video.is-playing .hero-video__poster { opacity: 0; }
 .hero-video__tint {
   position: absolute; inset: 0; z-index: -2; pointer-events: none;
   background:

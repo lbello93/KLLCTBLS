@@ -429,6 +429,20 @@
     });
   }
 
+  /* Autoplay that survives Safari: muted + inline set as properties, explicit load(), retry once the
+     data is ready, and — if the browser still refuses (iOS Low Power Mode) — start on the first touch/scroll. */
+  const autoplay = (v, src) => {
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+    v.autoplay = true; v.preload = 'auto';
+    v.src = src; v.load();
+    let want = true, armed = false;
+    const unlock = () => { ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach((t) => removeEventListener(t, unlock)); armed = false; if (want) go(); };
+    const go = () => { const p = v.play(); if (p && p.catch) p.catch(() => { if (!armed) { armed = true; ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach((t) => addEventListener(t, unlock, { passive: true })); } }); };
+    v.addEventListener('canplay', () => { if (want && v.paused) go(); });
+    return { play() { want = true; go(); }, pause() { want = false; v.pause(); } };
+  };
+
   /* ───────── Home hero video: portrait or landscape file, plays only on screen ───────── */
   const heroV = $('[data-hero-video]');
   if (heroV) {
@@ -436,28 +450,22 @@
     const cue = $('.hero-scrub__cue', heroV);
     if (cue) addEventListener('scroll', () => { cue.style.opacity = String(Math.max(0, 1 - scrollY / 120)); }, { passive: true });
     if (v && !reduce) {
-      v.muted = true;
-      v.src = matchMedia('(max-aspect-ratio: 1/1)').matches ? v.dataset.srcM : v.dataset.src;
-      v.preload = 'auto';
       v.addEventListener('playing', () => heroV.classList.add('is-playing'), { once: true });
-      const play = () => v.play().catch(() => {});
+      const ap = autoplay(v, matchMedia('(max-aspect-ratio: 1/1)').matches ? v.dataset.srcM : v.dataset.src);
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver(([e]) => { if (e.isIntersecting) play(); else v.pause(); }).observe(heroV);
-      } else play();
-      document.addEventListener('visibilitychange', () => { if (document.hidden) v.pause(); else if (heroV.getBoundingClientRect().bottom > 0) play(); });
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) ap.play(); else ap.pause(); }).observe(heroV);
+      } else ap.play();
+      document.addEventListener('visibilitychange', () => { if (document.hidden) ap.pause(); else if (heroV.getBoundingClientRect().bottom > 0) ap.play(); });
     }
   }
 
   /* ───────── Background videos: load when near, play only on screen ───────── */
   $$('[data-bg-video]').forEach((v) => {
     if (reduce || !('IntersectionObserver' in window)) return; // poster only
-    v.muted = true;
-    let loaded = false;
+    let ap = null;
     new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        if (!loaded) { loaded = true; v.src = v.dataset.src; v.preload = 'auto'; }
-        v.play().catch(() => {});
-      } else if (loaded) v.pause();
+      if (e.isIntersecting) { if (!ap) ap = autoplay(v, v.dataset.src); ap.play(); }
+      else if (ap) ap.pause();
     }, { rootMargin: '200px 0px' }).observe(v);
   });
 
