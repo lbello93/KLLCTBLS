@@ -34,6 +34,7 @@ const DIM = {
   'pass-card-0.webp': [400, 613], 'pass-card-1.webp': [400, 613], 'pass-card-2.webp': [400, 613], 'pass-card-3.webp': [400, 613],
   'pass-stage-0.webp': [400, 726], 'pass-stage-1.webp': [400, 726], 'pass-stage-2.webp': [400, 726], 'pass-stage-3.webp': [400, 726],
   'swp-logo.webp': [600, 486], 'swp-1.webp': [720, 1280], 'swp-2.webp': [720, 1280], 'swp-3.webp': [864, 1080], 'swp-4.webp': [864, 1080],
+  'frcs-logo.webp': [300, 90], 'frcs-1.webp': [720, 1280], 'frcs-2.webp': [720, 1280], 'frcs-3.webp': [720, 1280],
   'dallas-logo.webp': [264, 230], 'dallas-1.webp': [1080, 1080], 'dallas-2.webp': [1080, 720], 'dallas-3.webp': [1080, 1080], 'dallas-4.webp': [1080, 1080],
   'show-photo-1.webp': [826, 1072], 'sponsor-events-sticker.webp': [727, 784], 'sponsor-strategy-sticker.webp': [757, 703],
   'tech-landing-sticker.webp': [720, 649], 'tech-mobile-sticker.webp': [547, 637], 'tech-platform-sticker.webp': [725, 642],
@@ -129,12 +130,12 @@ const PROJECTS = [
     did: ['Sponsor fit mapping', 'Tier and rate card design', 'Activation concepts', 'Post-show reporting'],
     results: [['$85K', 'Sponsor revenue'], ['9', 'Brand partners'], ['78%', 'Renewal rate']],
     gallery: [PH('swp-1.webp', 'Collectors lining up outside the event center before a Sports Wax Promotions show', 'Sponsorship'), PH('swp-2.webp', 'A packed Sports Wax Promotions show floor seen from above', 'Sponsorship'), PH('swp-3.webp', 'Collectors crowding dealer cases at a Sports Wax Promotions show', 'Sponsorship'), PH('swp-4.webp', 'Dealers and buying stations on the Sports Wax Promotions floor', 'Sponsorship')] },
-  { id: 'front-row-card-show', world: 'hobby', slug: 'Exhibit 003', name: 'Front Row Card Show', initial: 'FR', pillars: ['Sponsorship'], icon: 'ticket', statLabel: 'New sponsorship in 3 months', stat: '$10K',
+  { id: 'front-row-card-show', world: 'hobby', slug: 'Exhibit 003', name: 'Front Row Card Show', initial: 'FR', logo: 'frcs-logo.webp', pillars: ['Sponsorship'], icon: 'ticket', statLabel: 'New sponsorship in 3 months', stat: '$10K',
     summary: 'Four big-name hobby partners and $10K in new sponsorship, closed in three months.',
     challenge: 'Front Row Card Show wanted brand partners on the floor, with packages that fit its market and capacity and someone to run every deal end to end.',
     did: ["Sponsor packages sized to the show's market", 'Warm outreach to Graded Guard, PSA, Beckett and Pristine Auctions', 'Presentations and negotiation', 'Contracts and clean handoff'],
     results: [['$10K', 'New sponsorship revenue'], ['4', 'Hobby partners signed'], ['3 mo', 'Start to signed']],
-    gallery: [] },
+    gallery: [PH('frcs-1.webp', 'A packed Front Row Card Show ballroom full of dealer tables', 'Sponsorship'), PH('frcs-2.webp', 'Collectors filling the aisles under the Front Row Card Show banner', 'Sponsorship'), PH('frcs-3.webp', 'Collectors lined up at buying stations at Front Row Card Show', 'Sponsorship')] },
   { id: 'metis', world: 'beyond', slug: 'Exhibit 004', name: 'Metis', initial: 'M', pillars: ['Design', 'Tech'], icon: 'layout-dashboard', statLabel: 'Online registrations', stat: '+312%',
     summary: 'A brand and member platform for a fast-growing collector community.',
     challenge: 'Metis had a loyal following and no home base — signups lived in DMs and spreadsheets, and the brand looked different on every channel.',
@@ -658,7 +659,7 @@ const exCard = (p) => `<a href="${p.url}" class="holo-tile" data-holo data-revea
   <article class="ex-card__in">
     <div style="height:6px;flex:none;background:${p.bar}"></div>
     <div class="ex-card__top"><span class="label-xs" style="font-size:12px;letter-spacing:.14em">${p.slug}</span>${p.world === 'beyond' ? '<span class="tag tag--beyond">Beyond the hobby</span>' : ''}</div>
-    <div class="ex-card__id">${p.logo ? `<span class="icon-chip icon-chip--logo">${img(p.logo, '', {})}</span>` : `<span class="icon-chip" style="background:${p.tint};color:${p.deep}">${icon(p.icon)}</span>`}<h3 class="ex-card__name">${esc(p.name).replace(/([a-z])([A-Z])/g, "$1<wbr>$2")}</h3></div>
+    <div class="ex-card__id">${p.logo ? `<span class="icon-chip icon-chip--logo${DIM[p.logo][0] > DIM[p.logo][1] * 1.8 ? ' icon-chip--wide' : ''}">${img(p.logo, '', {})}</span>` : `<span class="icon-chip" style="background:${p.tint};color:${p.deep}">${icon(p.icon)}</span>`}<h3 class="ex-card__name">${esc(p.name).replace(/([a-z])([A-Z])/g, "$1<wbr>$2")}</h3></div>
     <p class="ex-card__sum">${esc(p.summary)}</p>
     <ul class="tags">${p.pillars.map((n) => `<li class="tag tag--${n}">${n}</li>`).join('')}</ul>
     <div class="ex-card__foot">
