@@ -33,7 +33,8 @@ const DIM = {
   'hero-show.webp': [824, 1074], 'img-1b88.webp': [824, 512], 'logo-light.webp': [440, 241], 'pack-wrapper.webp': [488, 830],
   'pass-card-0.webp': [400, 613], 'pass-card-1.webp': [400, 613], 'pass-card-2.webp': [400, 613], 'pass-card-3.webp': [400, 613],
   'pass-stage-0.webp': [400, 726], 'pass-stage-1.webp': [400, 726], 'pass-stage-2.webp': [400, 726], 'pass-stage-3.webp': [400, 726],
-  'dallas-logo.webp': [800, 420], 'dallas-1.webp': [1080, 1080], 'dallas-2.webp': [1080, 720], 'dallas-3.webp': [1080, 1080], 'dallas-4.webp': [1080, 1080],
+  'swp-logo.webp': [600, 486], 'swp-1.webp': [720, 1280], 'swp-2.webp': [720, 1280], 'swp-3.webp': [864, 1080], 'swp-4.webp': [864, 1080],
+  'dallas-logo.webp': [264, 230], 'dallas-1.webp': [1080, 1080], 'dallas-2.webp': [1080, 720], 'dallas-3.webp': [1080, 1080], 'dallas-4.webp': [1080, 1080],
   'show-photo-1.webp': [826, 1072], 'sponsor-events-sticker.webp': [727, 784], 'sponsor-strategy-sticker.webp': [757, 703],
   'tech-landing-sticker.webp': [720, 649], 'tech-mobile-sticker.webp': [547, 637], 'tech-platform-sticker.webp': [725, 642],
 };
@@ -122,12 +123,12 @@ const PROJECTS = [
     did: ['Launched the program from scratch in 2022', 'Multi-year deals with PSA, SGC, Beckett, Goldin and more', 'Activation across 750+ tables and 85,000+ sq ft', 'Influencer network and talent like Michael Irvin'],
     results: [['$300K+', 'Confirmed for 2024'], ['5x', 'Sponsor portfolio growth'], ['10', 'National brand partners']],
     gallery: [PH('dallas-2.webp', 'A packed Dallas Card Show floor with collectors browsing dealer tables', 'Sponsorship'), PH('dallas-1.webp', 'Our founder on the show floor in a Dallas Card Show hoodie', 'Sponsorship'), PH('dallas-4.webp', 'Holding a signed number 10 Texas jersey at a Dallas Card Show autograph signing', 'Sponsorship'), PH('dallas-3.webp', 'Vendors catching up at a Dallas Card Show event', 'Sponsorship')] },
-  { id: 'sportswaxpromotions', world: 'hobby', slug: 'Exhibit 002', name: 'SportsWaxPromotions', initial: 'SW', pillars: ['Sponsorship'], icon: 'handshake', statLabel: 'Sponsor revenue', stat: '$85K',
+  { id: 'sportswaxpromotions', world: 'hobby', slug: 'Exhibit 002', name: 'SportsWaxPromotions', initial: 'SW', logo: 'swp-logo.webp', pillars: ['Sponsorship'], icon: 'handshake', statLabel: 'Sponsor revenue', stat: '$85K',
     summary: 'Sponsorship strategy that matched the right brands to a breaking-focused audience.',
     challenge: 'A strong audience with inconsistent sponsor deals — packages were priced by gut and renewals were rare.',
     did: ['Sponsor fit mapping', 'Tier and rate card design', 'Activation concepts', 'Post-show reporting'],
     results: [['$85K', 'Sponsor revenue'], ['9', 'Brand partners'], ['78%', 'Renewal rate']],
-    gallery: [IL('sponsor-strategy-sticker.webp', 'Sponsorship strategy illustration for SportsWaxPromotions', 'Sponsorship'), IL('sponsor-events-sticker.webp', 'Sponsor activation illustration', 'Sponsorship'), PH('show-photo-1.webp', 'Collectors at the SportsWaxPromotions booth', 'Sponsorship')] },
+    gallery: [PH('swp-1.webp', 'Collectors lining up outside the event center before a Sports Wax Promotions show', 'Sponsorship'), PH('swp-2.webp', 'A packed Sports Wax Promotions show floor seen from above', 'Sponsorship'), PH('swp-3.webp', 'Collectors crowding dealer cases at a Sports Wax Promotions show', 'Sponsorship'), PH('swp-4.webp', 'Dealers and buying stations on the Sports Wax Promotions floor', 'Sponsorship')] },
   { id: 'front-row-card-show', world: 'hobby', slug: 'Exhibit 003', name: 'Front Row Card Show', initial: 'FR', pillars: ['Sponsorship'], icon: 'ticket', statLabel: 'New sponsorship in 3 months', stat: '$10K',
     summary: 'Four big-name hobby partners and $10K in new sponsorship, closed in three months.',
     challenge: 'Front Row Card Show wanted brand partners on the floor, with packages that fit its market and capacity and someone to run every deal end to end.',
@@ -339,7 +340,7 @@ const heroScrub = () => {
   return `<section class="hero-video" data-hero-video aria-labelledby="home-title">
   <picture>
     <source media="(max-aspect-ratio: 1/1)" srcset="/assets/video/hero-poster-m.webp" width="540" height="960">
-    <img class="hero-video__poster" src="/assets/video/hero-poster.webp" width="1280" height="720" alt="kllctbls founder Leonardo Bello talking with collectors and dealers on a sports card show floor" fetchpriority="high" decoding="async">
+    <img class="hero-video__poster" src="/assets/video/hero-poster.webp" width="1280" height="720" alt="The kllctbls team meeting collectors, dealers and brands on sports card show floors" fetchpriority="high" decoding="async">
   </picture>
   <video class="hero-video__media" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
     data-src="/assets/video/hero.mp4" data-src-m="/assets/video/hero-m.mp4"></video>
@@ -746,7 +747,7 @@ projects.forEach((p, i) => {
         <section class="case-block"><h2>What we built</h2><ul class="did" style="--dot:${p.base}">${p.did.map((d) => `<li>${esc(d)}</li>`).join('')}</ul></section>
         <section class="case-block" style="gap:18px"><h2>Results</h2><dl class="results">${p.results.map((r) => `<div><dt>${r[1]}</dt><dd style="color:${p.deep}">${r[0]}</dd></div>`).join('')}</dl></section>
         ${p.gallery.length ? `<section class="case-block" style="gap:18px"><h2>From the project</h2>
-          <div class="case-gallery">${p.gallery.map((g) => `<figure style="background:${g.illus ? PIL[g.pillar].t : 'transparent'};padding:${g.illus ? '22px' : '0'}">${img(g.src, g.alt, { style: `object-fit:${g.illus ? 'contain' : 'cover'}` })}</figure>`).join('')}</div>
+          <div class="case-gallery">${p.gallery.map((g) => `<figure style="background:${g.illus ? PIL[g.pillar].t : 'transparent'};padding:${g.illus ? '22px' : '0'}${!g.illus && DIM[g.src] && DIM[g.src][1] > DIM[g.src][0] * 1.1 ? ';aspect-ratio:3 / 4' : ''}">${img(g.src, g.alt, { style: `object-fit:${g.illus ? 'contain' : 'cover'}` })}</figure>`).join('')}</div>
         </section>` : ''}
         <a href="${nx.url}" class="next-exhibit"><span class="label-xs" style="font-size:13px;letter-spacing:.16em">Next exhibit</span><strong>${esc(nx.name)} →</strong></a>
       </article>

@@ -611,7 +611,7 @@ p { margin: 0; }
 .ex-card__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 20px 0; }
 .ex-card__id { display: flex; align-items: center; gap: 14px; padding: 18px 20px 6px; }
 .icon-chip { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; }
-.icon-chip--logo { width: 92px; background: #fff; border: 1px solid var(--line-2); padding: 6px 8px; }
+.icon-chip--logo { width: 84px; height: 74px; border-radius: 0; background: none; padding: 0; }
 .icon-chip--logo img { width: 100%; height: 100%; object-fit: contain; }
 .icon-chip .mask-icon { width: 26px; height: 26px; }
 .ex-card__name { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 2.4vw, 30px); line-height: 1.05; overflow-wrap: anywhere; margin: 0; }
