@@ -124,7 +124,7 @@ const PROJECTS = [
     did: ['Launched the program from scratch in 2022', 'Multi-year deals with PSA, SGC, Beckett, Goldin and more', 'Activation across 750+ tables and 85,000+ sq ft', 'Influencer network and talent like Michael Irvin'],
     results: [['$300K+', 'Confirmed for 2024'], ['5x', 'Sponsor portfolio growth'], ['10', 'National brand partners']],
     gallery: [PH('dallas-2.webp', 'A packed Dallas Card Show floor with collectors browsing dealer tables', 'Sponsorship'), PH('dallas-1.webp', 'Our founder on the show floor in a Dallas Card Show hoodie', 'Sponsorship'), PH('dallas-4.webp', 'Holding a signed number 10 Texas jersey at a Dallas Card Show autograph signing', 'Sponsorship'), PH('dallas-3.webp', 'Vendors catching up at a Dallas Card Show event', 'Sponsorship')] },
-  { id: 'sportswaxpromotions', world: 'hobby', slug: 'Exhibit 002', name: 'SportsWaxPromotions', initial: 'SW', logo: 'swp-logo.webp', pillars: ['Sponsorship'], icon: 'handshake', statLabel: 'Sponsor revenue', stat: '$85K',
+  { id: 'sportswaxpromotions', world: 'hobby', slug: 'Exhibit 002', name: 'Sports Wax Promotions', initial: 'SW', logo: 'swp-logo.webp', pillars: ['Sponsorship'], icon: 'handshake', statLabel: 'Sponsor revenue', stat: '$85K',
     summary: 'Sponsorship strategy that matched the right brands to a breaking-focused audience.',
     challenge: 'A strong audience with inconsistent sponsor deals — packages were priced by gut and renewals were rare.',
     did: ['Sponsor fit mapping', 'Tier and rate card design', 'Activation concepts', 'Post-show reporting'],
@@ -157,7 +157,7 @@ const GALLERY = [
   { photo: 'floor-3.webp', alt: 'kllctbls at a collectible card display wall', pillar: 'Sponsorship', project: 'sportswaxpromotions' },
   { caseId: 'sportswaxpromotions' },
   { photo: 'img-1b88.webp', alt: 'Show floor crowd', pillar: 'Sponsorship', project: 'sportswaxpromotions' },
-  { misprint: true },
+  { caseId: 'dallas-card-show' },
   { slot: true },
 ];
 const TILE_ROT = [-2, 1.5, -1, 2, 1.5, -1.5, 1, -2];
@@ -417,7 +417,7 @@ function galleryTile(g, i) {
   <div class="g-tile__in">
     <div class="g-tile__bar" style="background:${p.bar}"></div>
     <div class="g-tile__top"><span class="label-xs">No. ${p.slug.replace('Exhibit ', '')}</span></div>
-    <div class="g-tile__mid"><span class="g-tile__case-icon" style="background:${p.tint};color:${p.deep}">${icon(p.icon, 'mask-icon', 'width:44%;height:44%')}</span></div>
+    <div class="g-tile__mid">${p.logo ? `<span class="g-tile__case-logo">${img(p.logo, p.name + ' logo', {})}</span>` : `<span class="g-tile__case-icon" style="background:${p.tint};color:${p.deep}">${icon(p.icon, 'mask-icon', 'width:44%;height:44%')}</span>`}</div>
     <div class="g-tile__bottom">
       <span class="g-tile__name">${esc(p.name)}</span>
       <div class="g-tile__statwrap"><span class="g-tile__stat" style="color:${p.deep}">${p.stat}</span><span class="label-xs" style="overflow:hidden;text-overflow:ellipsis">${p.statLabel}</span></div>
