@@ -136,13 +136,13 @@ const PROJECTS = [
     did: ["Sponsor packages sized to the show's market", 'Warm outreach to Graded Guard, PSA, Beckett and Pristine Auctions', 'Presentations and negotiation', 'Contracts and clean handoff'],
     results: [['$10K', 'New sponsorship revenue'], ['4', 'Hobby partners signed'], ['3 mo', 'Start to signed']],
     gallery: [PH('frcs-1.webp', 'A packed Front Row Card Show ballroom full of dealer tables', 'Sponsorship'), PH('frcs-2.webp', 'Collectors filling the aisles under the Front Row Card Show banner', 'Sponsorship'), PH('frcs-3.webp', 'Collectors lined up at buying stations at Front Row Card Show', 'Sponsorship')] },
-  { id: 'metis', world: 'beyond', slug: 'Exhibit 004', name: 'Metis', initial: 'M', pillars: ['Design', 'Tech'], icon: 'layout-dashboard', statLabel: 'Online registrations', stat: '+312%',
+  { id: 'metis', hidden: true, world: 'beyond', slug: 'Exhibit 004', name: 'Metis', initial: 'M', pillars: ['Design', 'Tech'], icon: 'layout-dashboard', statLabel: 'Online registrations', stat: '+312%',
     summary: 'A brand and member platform for a fast-growing collector community.',
     challenge: 'Metis had a loyal following and no home base — signups lived in DMs and spreadsheets, and the brand looked different on every channel.',
     did: ['Brand identity and logo system', 'Member accounts with secure login', 'Event registration and ticketing', 'Admin dashboard for the team'],
     results: [['+312%', 'Online registrations'], ['4.8★', 'Member rating'], ['−60%', 'Manual admin time']],
     gallery: [IL('tech-platform-sticker.webp', 'Metis member platform screens', 'Tech'), IL('design-brand-sticker.webp', 'Metis brand kit', 'Design'), PH('hero-show.webp', 'Metis at the show', 'Design')] },
-  { id: 'stima', world: 'beyond', slug: 'Exhibit 005', name: 'Stima', initial: 'S', pillars: ['Design'], icon: 'pen-tool', statLabel: 'Concept to launch', stat: '6 wks',
+  { id: 'stima', hidden: true, world: 'beyond', slug: 'Exhibit 005', name: 'Stima', initial: 'S', pillars: ['Design'], icon: 'pen-tool', statLabel: 'Concept to launch', stat: '6 wks',
     summary: 'A collector-first identity built to stand out on a crowded show floor.',
     challenge: 'Stima was launching into a market full of look-alike brands and needed an identity collectors would remember after one pass of the booth.',
     did: ['Logo and visual identity', 'Brand guidelines', 'Booth signage and standees', 'Social launch templates'],
@@ -195,7 +195,7 @@ const decoProject = (p) => {
   const m = PIL[p.pillars[0]];
   return { ...p, tint: m.t, deep: m.d, base: m.b, bar: p.pillars.length > 1 ? `linear-gradient(90deg,${p.pillars.map((n) => PIL[n].b).join(',')})` : m.b, url: `/portfolio/${p.id}/` };
 };
-const projects = PROJECTS.map(decoProject);
+const projects = PROJECTS.filter((p) => !p.hidden).map(decoProject);
 const byId = Object.fromEntries(projects.map((p) => [p.id, p]));
 
 // ───────────────────────────── Layout ─────────────────────────────
@@ -697,11 +697,12 @@ ${FLOOR.map(([f, a]) => `      ${img(f, a, { extra: 'data-reveal' })}`).join('\n
     <div style="height:clamp(44px,5.5vw,80px)"></div>
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <h2 class="h2-sm">Beyond the hobby</h2>
-      <span class="label-xs" style="font-size:13px;letter-spacing:.14em;color:var(--ink-62)">Exhibits 004–005</span>
     </div>
     <p style="font-size:clamp(16px,1.5vw,19px);color:var(--ink-80);margin-bottom:18px">The same team, outside the card room.</p>
-    <div class="ex-grid">
-${projects.filter((p) => p.world === 'beyond').map(exCard).join('\n')}
+    <div class="soon-card" data-reveal>
+      <span class="soon-card__star" aria-hidden="true">✦</span>
+      <p class="soon-card__title">Coming soon</p>
+      <p class="soon-card__copy">New work outside the hobby is on the way. Check back shortly.</p>
     </div>
   </div>
 </section>
