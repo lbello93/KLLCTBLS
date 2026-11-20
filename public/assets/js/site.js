@@ -936,7 +936,7 @@
     const get = (n) => (form.elements[n] ? String(form.elements[n].value || '').trim() : '');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = get('name'), email = get('email'), message = get('message'), need = get('need');
+      const name = get('name'), email = get('email'), message = get('message'), need = [...form.querySelectorAll('input[name="need"]:checked')].map((c) => c.value).join(', ');
       const errors = {};
       if (!name) errors.name = 'We need a name to say hello.';
       if (!email) errors.email = 'An email address, please.';
